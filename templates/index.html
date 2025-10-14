@@ -23,6 +23,26 @@
                 }
             });
         });
+
+        (function() {
+            const text = document.getElementById('text');
+            const clearBtn = document.getElementById('clear');
+
+            clearBtn.addEventListener('click', () => {
+                text.value = '';
+                text.focus();
+            });
+
+            text.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                }
+            });
+
+            document.getElementById('generator').addEventListener('submit', function(event) {
+                const selectedFont = document.querySelector('input[name="fonts"]:checked').value;
+                console.log("Selected font:", selectedFont);  
+            });
+        })();
     </script>
 </head>
 
@@ -45,7 +65,6 @@
                     <label for="text">Enter text</label>
                     <textarea name="text" id="text" placeholder="ASCII characters only" aria-label="Input text" aria-describedby="help"></textarea>
                     <small id="help" class="hint">Only ASCII characters (code 32–126). Use \n for new lines.</small>
-                    
 
                     <label for="fonts">Choose a font</label>
                     <div class="font-options">
@@ -69,7 +88,6 @@
                     </div>
                 </form>
 
-                <!-- preview removed -->
             </div>
 
             {{if .ASCIIArt}}
@@ -81,14 +99,19 @@
         </main>
 
         <script>
-            (function(){
+            (function() {
                 const text = document.getElementById('text');
                 const clearBtn = document.getElementById('clear');
 
-                clearBtn.addEventListener('click', ()=>{ text.value = ''; text.focus(); });
+                clearBtn.addEventListener('click', () => {
+                    text.value = '';
+                    text.focus();
+                });
 
-                // prevent accidental form submission when pressing Enter in textarea
-                text.addEventListener('keydown', function(e){ if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ /* allow Ctrl+Enter */ } });
+                text.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                    }
+                });
             })();
         </script>
     </div>
